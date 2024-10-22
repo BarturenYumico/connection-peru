@@ -521,6 +521,94 @@
                 font-size: 0.9rem; /* Reduce aún más el tamaño de la fuente */
             }
         }
+        .fun-facts {
+    padding: 50px 20px;
+    background-color: #f7f7f7;
+    text-align: center;
+    }
+
+.fun-facts h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.fact-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.fact-item:hover {
+    transform: translateY(-10px);
+}
+
+.fact-item img {
+    max-width: 100px;
+    margin-bottom: 15px;
+}
+
+.fact-item h3 {
+    font-size: 24px;
+    color: hsl(19, 93%, 44%);
+    margin-bottom: 10px;
+}
+
+.fact-item p {
+    color: #666;
+    font-size: 16px;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .fun-facts h2 {
+        font-size: 28px;
+    }
+
+    .fact-item h3 {
+        font-size: 20px;
+    }
+
+    .fact-item p {
+        font-size: 14px;
+    }
+
+    .fact-item img {
+        max-width: 80px;
+    }
+}
+
+/* Estilos para pantallas extra pequeñas */
+@media (max-width: 480px) {
+    .fun-facts h2 {
+        font-size: 24px;
+    }
+
+    .fact-item h3 {
+        font-size: 18px;
+    }
+
+    .fact-item p {
+        font-size: 13px;
+    }
+
+    .fact-item img {
+        max-width: 60px;
+    }
+
+    .fact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
          
     </style>
 </head>
@@ -570,6 +658,33 @@
                 <button type="submit" class="btn-register">Comenzar Ahora</button>
             </form>
         </div>
+    </section>
+    <section class="fun-facts">
+    <div class="container">
+        <h2>Datos Divertidos sobre Freelancers</h2>
+        <div class="fact-grid">
+            <div class="fact-item">
+                <img src="img/coffee-freelancer.png" alt="Café">
+                <h3>¡El 80% de los freelancers <br> no puede vivir sin café!</h3>
+                <p>El café es el combustible principal para muchos freelancers. ¡Los proyectos más creativos suelen estar acompañados de una buena taza!</p>
+            </div>
+            <div class="fact-item">
+                <img src="img/freedom.png" alt="Libertad">
+                <h3>La libertad laboral es lo mejor</h3>
+                <p>El 90% de los freelancers afirma que la libertad de elegir cuándo y dónde trabajar es su mayor ventaja.</p>
+            </div>
+            <div class="fact-item">
+                <img src="img/working-owl.png" alt="Búho Nocturno">
+                <h3>Búhos nocturnos</h3>
+                <p>¿Sabías que muchos freelancers son más productivos de noche? ¡El 40% prefiere trabajar después de la medianoche!</p>
+            </div>
+            <div class="fact-item">
+                <img src="img/flexible.png" alt="Flexibilidad">
+                <h3>Flexibilidad, ¡lo más importante!</h3>
+                <p>El 85% de los freelancers valora la flexibilidad para equilibrar su vida personal y profesional.</p>
+            </div>
+        </div>
+    </div>
     </section>
 
     <!-- Sección de reseñas -->
