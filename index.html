@@ -5,759 +5,281 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ConnectionNex</title>
     <style>
-        /* Estilos generales */
-         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
-        
+
         body {
-            font-family: 'Arial', sans-serif;
+            background-image: url('https://via.placeholder.com/1920x1080'); /* Reemplazar con la URL de la imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
-        
-        .hero-section {
-            position: relative;
-            height: 110vh;
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.233);
-            text-align: center;
-            padding: 0px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: space-between;
         }
-        
-        .background-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
+
+        .navbar .logo img {
+            height: 40px; /* Ajusta la altura de la imagen según necesites */
         }
-        
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 0;
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px;
         }
-        
-        /* Estilos del cuadro */
-        .content-box {
-            z-index: 1;
-            max-width: 600px;
-            background-color: rgba(255, 255, 255, 0.596); /* Fondo blanco semitransparente */
-            padding: 40px;
-            border-radius: 20px; /* Bordes redondeados */
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2); /* Sombra para resaltar el cuadro */
-            color: #333; /* Texto más oscuro para resaltar en el fondo claro */
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #ff6f61;
-            text-transform: uppercase;
-        }
-        
-        .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #333;
-            font-style: italic;
-        }
-        
-        .input-group {
-            margin-bottom: 1.5rem;
-            width: 100%;
-        }
-        
-        input {
-            padding: 0.8rem 1.2rem;
-            width: 100%;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-            outline: none;
-        }
-        
-        .error-message {
-            color: red;
-            font-size: 0.8rem;
-        }
-        
-        .btn-register {
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            background-color: #ff6f61;
+
+        .navbar a {
             color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #007bff;
+        }
+
+        /* Botón de menú para pantallas pequeñas */
+        .navbar .menu-toggle {
+            display: none;
+            font-size: 1.5em;
+            color: white;
+            background: none;
             border: none;
             cursor: pointer;
-            font-size: 1.2rem;
-            transition: background-color 0.3s ease;
         }
-        
-        .btn-register:hover {
-            background-color: #ff3d2e;
-        }
-        
-        /* Estilos responsivos */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.rem;
-            }
-        
-            .subtitle {
-                font-size: 1.2rem;
-            }
-        
-            input {
-                width: 100%;
-            }
-        
-            .btn-register {
-                width: 100%;
-            }
-        }
-        
 
-
-/**/
-    
-        /* Estilos generales para desktop */
-        /* Estilos generales para la barra de navegación */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background-color: #333;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .navbar {
+        /* Contenedor principal */
+        .container {
+            width: 100%;
+            max-width: 1200px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: hsl(19, 93%, 44%);
-            color: rgb(0, 0, 0);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+            align-items: flex-start;
+            padding: 20px;
+            margin-top: 100px; /* Espacio para la barra de navegación */
         }
-        
-        .logo img {
-            max-height: 50px;
+
+        .text-section {
+            width: 60%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
         }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-        
-        .nav-links li {
-            position: relative;
-        }
-        
-        .nav-links li a {
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 18px;
-            padding: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-links li a:hover {
-            color: #00aac0;
-        }
-        
-        .nav-links li a::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 2px;
-            background: #00aac0;
-            transition: width 0.3s ease;
-            margin-top: 5px;
-        }
-        
-        .nav-links li a:hover::after {
-            width: 100%;
-        }
-        
-        .nav-icons {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .nav-icons a {
-            color: white;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-icons a:hover {
-            color: #00aac0;
-        }
-        
-        /* Media query para dispositivos pequeños (pantallas de hasta 768px de ancho) */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: center;
-                padding: 10px;
-                position: relative; /* Cambia a relative para que ya no sea estática en pantallas pequeñas */
-            }
-        
-            .logo img {
-                margin-bottom: 20px; /* Añade un poco de margen entre el logo y los enlaces */
-            }
-        
-            .nav-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px; /* Reduce el espacio entre los enlaces */
-            }
-        
-            .nav-links li a {
-                font-size: 16px; /* Ajusta el tamaño de las fuentes en dispositivos pequeños */
-                padding: 5px;
-            }
-        
-            .nav-icons {
-                margin-top: 20px;
-            }
-        
-            /* Asegura que la siguiente sección no sea tapada */
-            .next-section {
-                margin-top: 80px; /* Añade margen superior a la siguiente sección, ajusta este valor según el tamaño de tu barra */
-            }
-        }
-        
-        /* Media query para dispositivos aún más pequeños (pantallas de hasta 480px de ancho) */
-        @media (max-width: 480px) {
-            .navbar {
-                padding: 10px;
-                position: relative; /* Para pantallas aún más pequeñas, la barra no será fija ni sticky */
-            }
-        
-            .nav-links li a {
-                font-size: 14px; /* Reduce el tamaño del texto aún más para pantallas muy pequeñas */
-            }
-        
-            .nav-icons {
-                gap: 15px;
-            }
-        
-            .next-section {
-                margin-top: 100px; /* Ajusta el margen según el tamaño total de tu barra de navegación en pantallas pequeñas */
-            }
-        }
-        
-        
-        
-        /* Sección de reseñas */
-        .reviews {
-            padding: 50px;
-            background-color: #f9f9f9;
-            text-align: center;
-        }
-    
-        .reviews h2 {
+
+        .text-section h1 {
             font-size: 2.5em;
-            margin-bottom: 40px;
-            color: #333;
-        }
-    
-        .reviews-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            overflow-x: scroll;
-            padding: 20px;
-            scroll-snap-type: x mandatory;
-        }
-    
-        .review-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            max-width: 300px;
-            scroll-snap-align: start;
-            transition: transform 0.3s ease-in-out;
-        }
-    
-        .review-card:hover {
-            transform: scale(1.05);
-        }
-    
-        .review-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+            color: #007bff;
+            letter-spacing: 5px;
             margin-bottom: 10px;
-        }
-    
-        .review-card h3 {
-            margin: 0;
-            color: #333;
-            font-size: 1.2em;
-        }
-    
-        .review-card p {
-            margin: 10px 0;
-            font-size: 16px;
-            color: #555;
-            line-height: 1.5;
-        }
-    
-        .stars {
-            display: block;
-            color: #ffcc00;
-            font-size: 1.2em;
-            margin-top: 10px;
-        }
-    
-        /* Ocultar scrollbar en navegadores modernos */
-        .reviews-container::-webkit-scrollbar {
-            display: none;
-        }
-    
-        .reviews-container {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    
-        /* Footer */
-        
-        .footer {
-            background-color: #333;
-            color: white;
-            padding: 40px 0;
-            font-size: 16px;
-        }
-        .footer-container {
-            display: flex;
-            justify-content: space-around;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-    
-        .footer-section {
-            flex: 1;
-            margin: 20px;
-        }
-    
-        .footer-section h3 {
-            margin-bottom: 20px;
-            color: #f1f1f1;
-        }
-    
-        .footer-section p, .footer-section ul, .footer-section li {
-            margin: 0;
-            padding: 0;
-            color: #bbb;
-            font-size: 14px;
-        }
-    
-        .footer-section ul {
-            list-style: none;
-        }
-    
-        .footer-section ul li {
-            margin-bottom: 10px;
-        }
-    
-        .footer-section ul li i {
-            margin-right: 10px;
-        }
-    
-        .footer-section ul li a {
-            color: #bbb;
-            text-decoration: none;
-        }
-    
-        .footer-section ul li a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-    
-        .social-icons {
-            margin-top: 20px;
-        }
-    
-        .social-icons a {
-            display: inline-block;
-            margin-right: 10px;
-            color: #bbb;
-            font-size: 20px;
-        }
-    
-        .social-icons a:hover {
-            color: white;
-        }
-    
-        .footer-bottom {
-            text-align: center;
-            background-color: #222;
-            padding: 20px;
-            margin-top: 20px;
-        }
-    
-        .footer-bottom p {
-            margin: 0;
-            color: #bbb;
-            font-size: 14px;
-        }
-        /* Estilos del botón circular de WhatsApp */
-        .whatsapp-button {
-            display: flex;
-            justify-content: center; /* Centra el ícono horizontalmente */
-            align-items: center; /* Centra el ícono verticalmente */
-            background-color: #25D366; /* Color verde de WhatsApp */
-            color: white;
-            width: 70px; /* Ancho del botón */
-            height: 70px; /* Alto del botón (igual al ancho para ser circular) */
-            border-radius: 50%; /* Radio de borde para hacer el botón circular */
-            text-decoration: none;
-            position: fixed; /* Para que flote en la pantalla */
-            bottom: 20px; /* Distancia desde la parte inferior */
-            right: 20px; /* Distancia desde la derecha */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            z-index: 1000; /* Para asegurarte de que esté encima de otros elementos */
-            transition: transform 0.2s ease-in-out; /* Transición suave para el efecto hover */
         }
 
-        .whatsapp-button img {
-            width: 40px; /* Tamaño del ícono */
-            height: 40px;
-            margin-right: 0px; /* Espacio entre el ícono y el texto */
+        .text-section p {
+            font-size: 1.5em;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
-        .whatsapp-button:hover {
-            transform: scale(1.05);
-            transition: transform 0.2s ease-in-out;
+
+        .text-section span {
+            font-size: 1em;
+            color: #666;
         }
-                
-         /* Media query para dispositivos móviles (pantallas de hasta 768px de ancho) */
-         @media (max-width: 768px) {
-            /* Ajustar el cuadro del formulario */
-            .content-box {
-                max-width: 90%; /* Ajusta el ancho del cuadro en móviles */
-                padding: 20px; /* Reduce el padding */
-                border-radius: 10px; /* Opcional: ajusta el borde redondeado */
+
+        .form-section {
+            width: 30%;
+            max-width: 400px; /* Controlar el ancho máximo del formulario */
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-left: auto;
+            margin-right: 0; /* Mantener al borde derecho */
+        }
+
+        .form-section label {
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .form-section input[type="text"],
+        .form-section input[type="email"],
+        .form-section input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
+        .form-section button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .form-section button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Ajuste responsivo para pantallas medianas */
+        @media (max-width: 1024px) {
+            .text-section {
+                width: 55%;
             }
-        
-            /* Ajustar el tamaño del título (h1) */
-            h1 {
-                font-size: 1.8rem; /* Reduce el tamaño del título */
-            }
-        
-            /* Ajustar subtítulos */
-            .subtitle {
-                font-size: 1.2rem; /* Reduce el tamaño del subtítulo */
-            }
-        
-            /* Ajustar los campos de entrada */
-            .input-group input {
-                padding: 0.5rem 1rem; /* Reduce el padding de los inputs */
-                font-size: 0.9rem; /* Ajusta el tamaño del texto en los inputs */
-            }
-        
-            /* Ajustar el botón de registro */
-            .btn-register {
-                padding: 0.8rem 1.5rem; /* Reduce el tamaño del botón */
-                font-size: 1rem; /* Reduce el tamaño de la fuente del botón */
-            }
-        
-            /* Ajustar la altura de la sección para que se vea más del video */
-            .hero-section {
-                height: 100vh; /* O un valor ligeramente más bajo si deseas ver más video */
-            }
-        
-            /* Hacer que la superposición del video sea más transparente */
-            .overlay {
-                background: rgba(0, 0, 0, 0.3); /* Reduce la opacidad de la capa superpuesta */
+
+            .form-section {
+                width: 40%;
             }
         }
-        
-        /* Media query para dispositivos aún más pequeños (pantallas de hasta 480px de ancho) */
+
+        /* Responsivo para pantallas pequeñas y móviles */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: flex-end;
+                padding: 10px;
+                margin-top: 140px; /* Espacio adicional en pantallas pequeñas */
+            }
+
+            .text-section {
+                width: 100%;
+                max-width: 500px;
+                margin-bottom: 20px;
+            }
+
+            .form-section {
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .text-section h1 {
+                font-size: 2em;
+            }
+
+            .text-section p {
+                font-size: 1.2em;
+            }
+
+            .navbar .nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: #333;
+                position: absolute;
+                top: 60px;
+                right: 10px;
+                width: 150px;
+                padding: 10px;
+                border-radius: 5px;
+                gap: 10px;
+            }
+
+            .navbar .nav-links.show {
+                display: flex;
+            }
+
+            .navbar .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Responsivo para pantallas muy pequeñas */
         @media (max-width: 480px) {
-            /* Ajustar aún más el cuadro del formulario */
-            .content-box {
-                max-width: 95%; /* Aún más pequeño para pantallas muy pequeñas */
-                padding: 15px; /* Reducir el padding */
+            .text-section h1 {
+                font-size: 1.8em;
             }
-        
-            /* Ajustar el título aún más */
-            h1 {
-                font-size: 1.5rem; /* Ajusta el tamaño del título para pantallas más pequeñas */
+
+            .text-section p {
+                font-size: 1em;
             }
-        
-            /* Ajustar subtítulos */
-            .subtitle {
-                font-size: 1rem; /* Reduce el tamaño del subtítulo */
+
+            .form-section {
+                padding: 15px;
+                gap: 10px;
             }
-        
-            /* Ajustar los campos de entrada */
-            .input-group input {
-                padding: 0.4rem 0.8rem; /* Ajusta el padding de los inputs */
-                font-size: 0.8rem; /* Ajusta el tamaño de la fuente en los inputs */
-            }
-        
-            /* Ajustar el botón de registro */
-            .btn-register {
-                padding: 0.6rem 1.2rem; /* Aún más pequeño el botón */
-                font-size: 0.9rem; /* Reduce aún más el tamaño de la fuente */
+
+            .form-section button {
+                padding: 8px;
             }
         }
-        .fun-facts {
-    padding: 50px 20px;
-    background-color: #f7f7f7;
-    text-align: center;
-    }
-
-.fun-facts h2 {
-    font-size: 36px;
-    margin-bottom: 30px;
-    color: #333;
-}
-
-.fact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.fact-item {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.3s ease;
-}
-
-.fact-item:hover {
-    transform: translateY(-10px);
-}
-
-.fact-item img {
-    max-width: 100px;
-    margin-bottom: 15px;
-}
-
-.fact-item h3 {
-    font-size: 24px;
-    color: hsl(19, 93%, 44%);
-    margin-bottom: 10px;
-}
-
-.fact-item p {
-    color: #666;
-    font-size: 16px;
-}
-
-/* Estilos para pantallas pequeñas */
-@media (max-width: 768px) {
-    .fun-facts h2 {
-        font-size: 28px;
-    }
-
-    .fact-item h3 {
-        font-size: 20px;
-    }
-
-    .fact-item p {
-        font-size: 14px;
-    }
-
-    .fact-item img {
-        max-width: 80px;
-    }
-}
-
-/* Estilos para pantallas extra pequeñas */
-@media (max-width: 480px) {
-    .fun-facts h2 {
-        font-size: 24px;
-    }
-
-    .fact-item h3 {
-        font-size: 18px;
-    }
-
-    .fact-item p {
-        font-size: 13px;
-    }
-
-    .fact-item img {
-        max-width: 60px;
-    }
-
-    .fact-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-         
     </style>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+        }
+    </script>
 </head>
 <body>
-
-    <!-- Barra de navegación -->
-       <!-- Barra de navegación mejorada -->
-       <header>
-        <nav class="navbar">
-            <div class="logo">
-                <a href="#inicio">
-                    <img src="img/Logo.png" alt="Logo de la empresa">
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#reviews">Reseñas</a></li>
-                <li><a href="#contact">Contáctanos</a></li>
-            </ul>
-            <div class="nav-icons">
-                <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
-                <a href="#" class="menu-icon"><i class="fas fa-bars"></i></a>
-            </div>
-        </nav>
-    </header>
-
-    <section class="hero-section">
-        <div class="overlay"></div>
-        <video autoplay muted loop class="background-video">
-            <source src="img/Diseño sin título (1).mp4" type="video/mp4">
-        </video>
-        <div class="content-box">
-            <h1>¡Desarrolla tu Potencial y Conquista el Mundo Freelance!</h1>
-            <p class="subtitle">Accede a proyectos increíbles, trabaja con los mejores y lleva tu carrera al siguiente nivel</p>
-            <form id="register-form" class="form">
-                <div class="input-group">
-                    <label for="name">Nombre Completo</label>
-                    <input type="text" id="name" name="name" placeholder="Ingresa tu nombre completo" required>
-                    <span id="name-error" class="error-message"></span>
-                </div>
-                <div class="input-group">
-                    <label for="email">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required>
-                    <span id="email-error" class="error-message"></span>
-                </div>
-                
-                <button type="submit" class="btn-register">Comenzar Ahora</button>
-            </form>
+    <div class="navbar">
+        <div class="logo">
+            <img src="img/Logo.png" alt="Logo ConnectionNex"> <!-- Reemplaza con la URL o ruta del logo -->
         </div>
-    </section>
-    <section class="fun-facts">
-    <div class="container">
-        <h2>Datos Divertidos sobre Freelancers</h2>
-        <div class="fact-grid">
-            <div class="fact-item">
-                
-                <h3>¡El 80% de los freelancers <br> no puede vivir sin café!</h3>
-                <p>El café es el combustible principal para muchos freelancers. ¡Los proyectos más creativos suelen estar acompañados de una buena taza!</p>
-            </div>
-            <div class="fact-item">
-                
-                <h3>La libertad laboral es lo mejor</h3>
-                <p>El 90% de los freelancers afirma que la libertad de elegir cuándo y dónde trabajar es su mayor ventaja.</p>
-            </div>
-            <div class="fact-item">
-                
-                <h3>Búhos nocturnos</h3>
-                <p>¿Sabías que muchos freelancers son más productivos de noche? ¡El 40% prefiere trabajar después de la medianoche!</p>
-            </div>
-            <div class="fact-item">
-                
-                <h3>Flexibilidad, ¡lo más importante!</h3>
-                <p>El 85% de los freelancers valora la flexibilidad para equilibrar su vida personal y profesional.</p>
-            </div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="nav-links">
+            <a href="#quienes-somos">¿Quiénes somos?</a>
+            <a href="#inicio-sesion">Inicio de sesión</a>
         </div>
     </div>
-    </section>
 
-    <!-- Sección de reseñas -->
-    <section id="reviews" class="reviews">
-        <h2>Lo que dicen nuestros clientes</h2>
-        <div class="reviews-container">
-            <div class="review-card">
-                <img src="img/yumico.jpg" alt="Cliente 1">
-                <h3>Yumico Barturen</h3>
-                <p>"Excelente servicio y atención al cliente. Totalmente recomendado!"</p>
-                <span class="stars">★★★★★</span>
-            </div>
-            <div class="review-card">
-                <img src="img/yazm.jpg" alt="Cliente 2">
-                <h3>Yazmin Chozo</h3>
-                <p>"Un equipo muy profesional y amable. Sin duda los volvería a contratar."</p>
-                <span class="stars">★★★★☆</span>
-            </div>
-            <div class="review-card">
-                <img src="img/chng.jpg" alt="Cliente 3">
-                <h3>Micael Chang</h3>
-                <p>"Calidad inmejorable y atención personalizada. Me encanta!"</p>
-                <span class="stars">★★★★★</span>
-            </div>
-            <div class="review-card">
-                <img src="img/WhatsApp Image 2024-10-20 at 8.38.54 AM.jpeg" alt="Cliente 4">
-                <h3>Jhulisa Rodas</h3>
-                <p>"Muy satisfecho con los resultados. Lo mejor del mercado!"</p>
-                <span class="stars">★★★★★</span>
-            </div>
-            <div class="review-card">
-                <img src="img/isac.png" alt="Cliente 5">
-                <h3>Isaac Abellaneda</h3>
-                <p>"Sin duda alguna los recomiendo, una experiencia única."</p>
-                <span class="stars">★★★★☆</span>
-            </div>
+    <div class="container">
+        <div class="text-section">
+            <h1>CONNECTIONNEX</h1>
+            <p>¡Desarrolla tu potencial y conquista el mundo del freelance!</p>
+            <span>Accede a miles de proyectos increíbles y trabaja con los mejores</span>
         </div>
-    </section>
-   
-    <a href="https://wa.me/51923448981" target="_blank" id="whatsapp-button" class="whatsapp-button">
-        <img src="img/wsp.png" alt="WhatsApp" />
-        
-    </a>
-    
+        <div class="form-section">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" placeholder="Nombre">
+            
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="Correo electrónico">
+            
+            <label for="phone">Teléfono</label>
+            <input type="tel" id="phone" name="phone" placeholder="Teléfono">
+            
+            <button>Acceder a información</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <h1 class="title">&iquest;Quienes somos?</h1>
+            <p class="description">
+                Somos la plataforma ideal que conecta a desarrolladores y programadores profesionales y freelances con quienes requieren proyectos de magnitud y superar nuevos retos. Aqu&iacute;, la tecnolog&iacute;a y las oportunidades se encuentran, facilitando que los profesionales encuentren el trabajo perfecto y que las empresas descubran las soluciones innovadoras que necesitan.
+            </p>
+        </div>
+        <div class="image-section">
+            <img src="img/isac.png" alt="Persona con laptop en la playa" class="image1">
+            <img src="https://via.placeholder.com/180" alt="Programadora trabajando" class="image2">
+            <img src="https://via.placeholder.com/120" alt="Persona relaj&aacute;ndose con laptop" class="image3">
+            <img src="https://via.placeholder.com/160" alt="C&oacute;digo de programaci&oacute;n" class="image4">
+        </div>
+    </div>
+</body>
+</html>
 
-    
-
-    <script>
-        
-        
-        document.getElementById('register-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            let name = document.getElementById('name').value;
-            let email = document.getElementById('email').value;
-            let nameError = document.getElementById('name-error');
-            let emailError = document.getElementById('email-error');
-        
-            nameError.textContent = '';
-            emailError.textContent = '';
-        
-            if (name.length < 3) {
-                nameError.textContent = 'El nombre debe tener al menos 3 caracteres.';
-            }
-        
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                emailError.textContent = 'Por favor ingresa un correo válido.';
-            }
-        
-            if (name.length >= 3 && emailRegex.test(email)) {
-                alert('¡Registro exitoso!');
-            }
-        });
-        
-    
-    </script>
