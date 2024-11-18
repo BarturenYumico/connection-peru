@@ -13,31 +13,28 @@
         }
 
         body {
-            background-image: url('https://via.placeholder.com/1920x1080'); /* Reemplazar con la URL de la imagen de fondo */
-            background-size: cover;
-            background-position: center;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
             padding: 20px;
         }
 
+        /* Estilo de la barra de navegación */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.7);
             display: flex;
             align-items: center;
-            padding: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
             justify-content: space-between;
+            padding: 15px 30px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .navbar .logo img {
-            height: 40px; /* Ajusta la altura de la imagen según necesites */
+            height: 40px;
         }
 
         .navbar .nav-links {
@@ -56,70 +53,42 @@
             color: #007bff;
         }
 
-        /* Botón de menú para pantallas pequeñas */
-        .navbar .menu-toggle {
-            display: none;
-            font-size: 1.5em;
-            color: white;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* Contenedor principal */
-        .container {
-            width: 100%;
-            max-width: 1200px;
+        /* Primera sección - CONNECTIONNEX */
+        section.main-section {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 20px;
-            margin-top: 100px; /* Espacio para la barra de navegación */
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            background-image: url('img/FONDO.jpg'); /* Imagen de fondo */
+            
+            background-size: cover;
+            background-position: center;
+            color: rgb(20, 19, 19);
+            padding: 40px;
+            margin-top: 100px;
         }
 
         .text-section {
-            width: 60%;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        .text-section h1 {
-            font-size: 2.5em;
-            color: #007bff;
-            letter-spacing: 5px;
-            margin-bottom: 10px;
-        }
-
-        .text-section p {
-            font-size: 1.5em;
-            color: #333;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .text-section span {
-            font-size: 1em;
-            color: #666;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
         }
 
         .form-section {
-            width: 30%;
-            max-width: 400px; /* Controlar el ancho máximo del formulario */
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            background-color: rgba(0, 0, 0, 0.363); /* Fondo del formulario */
             color: white;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-left: auto;
-            margin-right: 0; /* Mantener al borde derecho */
+            border-radius: 10px;
+            margin-top: 20px;
         }
 
         .form-section label {
             font-weight: bold;
-            font-size: 1em;
         }
 
         .form-section input[type="text"],
@@ -147,109 +116,309 @@
             background-color: #0056b3;
         }
 
-        /* Ajuste responsivo para pantallas medianas */
-        @media (max-width: 1024px) {
+        /* Sección ¿Quiénes somos? */
+        section.who-we-are-section {
+            width: 100%;
+            padding: 50px 20px;
+           /* background-image: url('img/IMAG5.jpg'); /* Imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            margin-top: 40px; /* Espacio entre secciones */
+            color: rgb(3, 3, 3);
+        }
+
+        .content-image-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 600px;
+            text-align: center; /* Centrado de texto */
+            background-color: rgba(0, 0, 0, 0); /* Fondo translúcido, menos opaco */
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .image-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .image-section img {
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image1 {
+            width: 140px;
+            height: 140px;
+        }
+        .image2 {
+            width: 160px;
+            height: 160px;
+        }
+        .image3 {
+            width: 120px;
+            height: 120px;
+        }
+        .image4 {
+            width: 180px;
+            height: 180px;
+        }
+
+        @media (min-width: 768px) {
+            section.main-section {
+                flex-direction: row;
+                justify-content: space-between;
+                height: 500px;
+                margin-top: 100px;
+            }
+
             .text-section {
-                width: 55%;
+                flex: 1;
+                text-align: left;
             }
 
             .form-section {
-                width: 40%;
+                flex: 1;
+                max-width: 400px;
+                margin-top: 0;
+            }
+
+            .content-image-wrapper {
+                flex-direction: row;
+                justify-content: space-between;
             }
         }
 
-        /* Responsivo para pantallas pequeñas y móviles */
+        /* Sección de reseñas */
+        .reviews {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            background-image: url('img/IMAG5.jpg'); /* Imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            color: rgb(150, 138, 138);
+            padding: 40px;
+            margin-top: 100px;
+        }
+
+        .reviews h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #fffdfd;
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px;
+            scroll-snap-type: x mandatory;
+        }
+
+        @media (min-width: 768px) {
+            .reviews-container {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        .review-card {
+            background-color: rgba(255, 255, 255, 0.582);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            max-width: 300px;
+            scroll-snap-align: start;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .review-card:hover {
+            transform: scale(1.05);
+        }
+
+        .review-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .review-card h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        .review-card p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .stars {
+            display: block;
+            color: #ffcc00;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* Ocultar scrollbar en navegadores modernos */
+        .reviews-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .reviews-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Estilos del botón circular de WhatsApp */
+        .whatsapp-button {
+            display: flex;
+            justify-content: center; /* Centra el ícono horizontalmente */
+            align-items: center; /* Centra el ícono verticalmente */
+            background-color: #25d36500; /* Color verde de WhatsApp */
+            color: white;
+            width: 70px; /* Ancho del botón */
+            height: 70px; /* Alto del botón (igual al ancho para ser circular) */
+            border-radius: 50%; /* Radio de borde para hacer el botón circular */
+            text-decoration: none;
+            position: fixed; /* Para que flote en la pantalla */
+            bottom: 20px; /* Distancia desde la parte inferior */
+            right: 20px; /* Distancia desde la derecha */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000; /* Para asegurarte de que esté encima de otros elementos */
+            transition: transform 0.2s ease-in-out; /* Transición suave para el efecto hover */
+        }
+
+        .whatsapp-button img {
+            width: 40px; /* Tamaño del ícono */
+            height: 40px;
+            margin-right: 0px; /* Espacio entre el ícono y el texto */
+        }
+        .whatsapp-button:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s ease-in-out;
+        }
+             
+        
+        
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            width: 100%;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            color: #26c8f9cb;
+        }
+        
+        .footer-section p, 
+        .footer-section a {
+            font-size: 14px;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .footer-section a {
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: #26c8f9cb;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .social-links img {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-links img:hover {
+            transform: scale(1.2);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0 0;
+            border-top: 1px solid #555;
+            font-size: 12px;
+        }
+        
+        .footer-bottom span {
+            color: #f9a826;
+        }
+        
+        /* Ajustes para pantallas pequeñas */
         @media (max-width: 768px) {
-            .container {
+            .footer-content {
                 flex-direction: column;
-                align-items: flex-end;
-                padding: 10px;
-                margin-top: 140px; /* Espacio adicional en pantallas pequeñas */
+                align-items: center;
+                text-align: center;
             }
-
-            .text-section {
-                width: 100%;
-                max-width: 500px;
-                margin-bottom: 20px;
-            }
-
-            .form-section {
-                width: 100%;
-                max-width: 500px;
-            }
-
-            .text-section h1 {
-                font-size: 2em;
-            }
-
-            .text-section p {
-                font-size: 1.2em;
-            }
-
-            .navbar .nav-links {
-                display: none;
-                flex-direction: column;
-                background-color: #333;
-                position: absolute;
-                top: 60px;
-                right: 10px;
-                width: 150px;
-                padding: 10px;
-                border-radius: 5px;
-                gap: 10px;
-            }
-
-            .navbar .nav-links.show {
-                display: flex;
-            }
-
-            .navbar .menu-toggle {
-                display: block;
+        
+            .footer-section {
+                margin-bottom: 30px;
             }
         }
-
-        /* Responsivo para pantallas muy pequeñas */
-        @media (max-width: 480px) {
-            .text-section h1 {
-                font-size: 1.8em;
-            }
-
-            .text-section p {
-                font-size: 1em;
-            }
-
-            .form-section {
-                padding: 15px;
-                gap: 10px;
-            }
-
-            .form-section button {
-                padding: 8px;
-            }
-        }
-    </style>
-    <script>
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('show');
-        }
-    </script>
+        
+        </style>
+        
 </head>
 <body>
-    <div class="navbar">
-        <div class="logo">
-            <img src="img/Logo.png" alt="Logo ConnectionNex"> <!-- Reemplaza con la URL o ruta del logo -->
-        </div>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <div class="nav-links">
-            <a href="#quienes-somos">¿Quiénes somos?</a>
-            <a href="#inicio-sesion">Inicio de sesión</a>
-        </div>
-    </div>
 
-    <div class="container">
+    <section class="navbar">
+        <div class="logo">
+            <img src="img/Logo.png" alt="Logo ConnectionNex">
+        </div>
+        <div class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#quienes-somos">¿Quiénes somos?</a>
+        </div>
+    </section>
+
+    <!-- Primera Sección - CONNECTIONNEX -->
+    <section class="main-section" id="inicio">
         <div class="text-section">
-            <h1>CONNECTIONNEX</h1>
+            <!-- Aquí está la imagen en lugar del texto "CONNECTIONNEX" -->
+            <img src="img/Logo.png" alt="ConnectionNex" style="width: 70%; max-width: 250px;">
             <p>¡Desarrolla tu potencial y conquista el mundo del freelance!</p>
             <span>Accede a miles de proyectos increíbles y trabaja con los mejores</span>
         </div>
@@ -263,23 +432,122 @@
             <label for="phone">Teléfono</label>
             <input type="tel" id="phone" name="phone" placeholder="Teléfono">
             
-            <button>Acceder a información</button>
+            <button id="registerButton">Acceder a información</button>
         </div>
-    </div>
-    <div class="container">
-        <div class="content">
-            <h1 class="title">&iquest;Quienes somos?</h1>
-            <p class="description">
-                Somos la plataforma ideal que conecta a desarrolladores y programadores profesionales y freelances con quienes requieren proyectos de magnitud y superar nuevos retos. Aqu&iacute;, la tecnolog&iacute;a y las oportunidades se encuentran, facilitando que los profesionales encuentren el trabajo perfecto y que las empresas descubran las soluciones innovadoras que necesitan.
-            </p>
-        </div>
-        <div class="image-section">
-            <img src="img/isac.png" alt="Persona con laptop en la playa" class="image1">
-            <img src="https://via.placeholder.com/180" alt="Programadora trabajando" class="image2">
-            <img src="https://via.placeholder.com/120" alt="Persona relaj&aacute;ndose con laptop" class="image3">
-            <img src="https://via.placeholder.com/160" alt="C&oacute;digo de programaci&oacute;n" class="image4">
-        </div>
-    </div>
-</body>
-</html>
+    </section>
 
+    <!-- Sección ¿Quiénes somos? -->
+    <section class="who-we-are-section" id="quienes-somos">
+        <div class="content-image-wrapper">
+            <div class="content">
+                <h1>¿Quiénes somos?</h1>
+                <p>
+                    Somos la plataforma ideal que conecta a desarrolladores y programadores profesionales y freelances con quienes requieren proyectos de magnitud y superar nuevos retos. Aquí, la tecnología y las oportunidades se encuentran, facilitando que los profesionales encuentren el trabajo perfecto y que las empresas descubran las soluciones innovadoras que necesitan.
+                </p>
+            </div>
+            <div class="image-section">
+                <img src="img/IMAG1.jpg" alt="Persona con laptop en la playa" class="image1">
+                <img src="img/IMAG2.jpg" alt="Programadora trabajando" class="image2">
+                <img src="img/IMAG3.jpg" alt="Persona relajándose con laptop" class="image3">
+                <img src="img/IMAG4.jpg" alt="Código de programación" class="image4">
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews">
+        <h2>Lo que dicen nuestros clientes</h2>
+        <div class="reviews-container">
+            <div class="review-card">
+                <img src="img/IMAGINTEGRANTE2.jpg" alt="Cliente 1">
+                <h3>Yumico Barturen</h3>
+                <p>"Excelente servicio y atención al cliente. Totalmente recomendado!"</p>
+                <span class="stars">★★★★★</span>
+            </div>
+            <div class="review-card">
+                <img src="img/IMAGINTEGRATE.jpg" alt="Cliente 2">
+                <h3>Yazmin Chozo</h3>
+                <p>"Un equipo muy profesional y amable. Sin duda los volvería a contratar."</p>
+                <span class="stars">★★★★☆</span>
+            </div>
+            <div class="review-card">
+                <img src="img/IMAGINTEGRANTE4.jpg" alt="Cliente 3">
+                <h3>Micael Chang</h3>
+                <p>"Calidad inmejorable y atención personalizada. Me encanta!"</p>
+                <span class="stars">★★★★★</span>
+            </div>
+            <div class="review-card">
+                <img src="img/IMAGINTEGRANTE1.jpeg" alt="Cliente 4">
+                <h3>Jhulisa Rodas</h3>
+                <p>"Muy satisfecho con los resultados. Lo mejor del mercado!"</p>
+                <span class="stars">★★★★★</span>
+            </div>
+            <div class="review-card">
+                <img src="img/IMGINTEGRANTE3.png" alt="Cliente 5">
+                <h3>Isaac Abellaneda</h3>
+                <p>"Sin duda alguna los recomiendo, una experiencia única."</p>
+                <span class="stars">★★★★☆</span>
+            </div>
+        </div>
+    </section>
+    <a href="https://wa.me/51923448981" target="_blank" id="whatsapp-button" class="whatsapp-button">
+        <img src="img/wsp.png" alt="WhatsApp" />
+        
+    </a>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre ConnectionNex</h3>
+                <p>Tu plataforma ideal para conectar con oportunidades freelance de alto nivel. Estamos aquí para impulsar tu carrera y ayudarte a encontrar proyectos que te apasionen.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces rápidos</h3>
+                <nav class="footer-nav">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#quienes-somos">¿Quiénes somos?</a>
+                    <a href="#reviews">Reseñas</a>
+                    <a href="#contact">Contacto</a>
+                </nav>
+            </div>
+            <div class="footer-section" id="contact">
+                <h3>Contacto</h3>
+                <p>Email: contacto@connectionnex.com</p>
+                <p>Teléfono: +51 923 448 981</p>
+                <p>Síguenos en:</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61565802621974"><img src="img/facebooklogo.png" alt="facebook"/></a>
+                    <a href="https://www.instagram.com/connectionnex/"><img src="img/intagramlogo.png" alt="Instagram"></a>
+                    <a href="https://www.tiktok.com/@connectionnex"><img src="img/tiktoklogo.png" alt="Tiktok"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> ConnectionNex. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+
+    <script>
+        // Seleccionamos el botón de registro
+        const registerButton = document.getElementById('registerButton');
+
+        // Agregamos un evento de clic
+        registerButton.addEventListener('click', () => {
+            // Capturamos los valores de los campos
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            // Validamos que los campos no estén vacíos
+            if (name === '' || email === '' || phone === '') {
+                alert('Por favor, completa todos los campos antes de registrarte.');
+            } else {
+                // Mostrar mensaje de registro exitoso
+                alert(`¡Registro exitoso! Bienvenido(a), ${name}`);
+                // Limpiar los campos del formulario
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('phone').value = '';
+            }
+        });
+    </script>
